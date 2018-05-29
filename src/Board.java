@@ -405,10 +405,7 @@ public class Board {
 			}
 		}	
 		
-		// if it was black move, and white king under check, it is all valid, return 1, or
-		// if it was white move, and black king under check, it is all valid, return 1
-		if ((movingPieceColor == Color.BLACK && whiteKingInCheck) || (movingPieceColor == Color.WHITE && blackKingInCheck))
-			return 1;
+
 		
 		// if black move causes black king under check, it is an illegal move; need to restore to original and return -2, or
 		// if white move causes white king under check, it is an illegal move; need to restore to original and return -2
@@ -423,6 +420,12 @@ public class Board {
 			
 			return -2;
 		}
+		
+		// if it was black move, and white king under check, it is all valid, return 1, or
+		// if it was white move, and black king under check, it is all valid, return 1
+		if ((movingPieceColor == Color.BLACK && whiteKingInCheck) || (movingPieceColor == Color.WHITE && blackKingInCheck))
+			return 1;
+		
 		
 		// return what you got
 		return moveRetVal;
