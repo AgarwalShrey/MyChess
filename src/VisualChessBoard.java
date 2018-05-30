@@ -10,7 +10,7 @@ import javax.swing.border.BevelBorder;
 
 
 public class VisualChessBoard extends JLayeredPane {
-	private static final int PANEL_SIZE = 800;	// same height and width
+	private static final int PANEL_SIZE = 640;	// same height and width
 	private static final int NUMROWS = 8;
 	private static final int NUMCOLS = 8;
 	
@@ -60,8 +60,8 @@ public class VisualChessBoard extends JLayeredPane {
 		public void mousePressed(MouseEvent e) {
 			Point p = e.getPoint ();
 			// find grid location
-			origGridX = (int)((p.getX ())/100);	
-			origGridY = (int)((p.getY ())/100);	
+			origGridX = (int)((p.getX ())/(PANEL_SIZE/8));	
+			origGridY = (int)((p.getY ())/(PANEL_SIZE/8));	
 
 			System.out.println("Pressed (" + origGridX + ", " + origGridY + ")");
 		
@@ -118,8 +118,8 @@ public class VisualChessBoard extends JLayeredPane {
 		@Override
 		public void mouseReleased(MouseEvent e) {
 			Point p = e.getPoint ();
-			int gridX = (int)((p.getX ())/100);	
-			int gridY = (int)((p.getY ())/100);	
+			int gridX = (int)((p.getX ())/(PANEL_SIZE/8));	
+			int gridY = (int)((p.getY ())/(PANEL_SIZE/8));	
 			
 			// Check for point within board; if outside, force grid to be -1, -1
 			if (p.getX() < 0 || p.getX() > PANEL_SIZE || p.getY() < 0 || p.getY() > PANEL_SIZE) {
@@ -150,12 +150,12 @@ public class VisualChessBoard extends JLayeredPane {
 				// illegal moves
 				if (retVal == -4) {
 					// returned the piece to original location
-					statusLabel.setText ("Move is outside the board");
+					statusLabel.setText ("Stay on the board");
 				} else if (retVal == -3) {
 					// returned the piece to original location
 					statusLabel.setText ("");
 				} else if (retVal == -2) {
-					statusLabel.setText ("Illegal move - results in Check");
+					statusLabel.setText ("Illegal move: Check");
 				} else if (retVal == -1) {
 					statusLabel.setText ("Illegal move");
 				}
@@ -309,7 +309,7 @@ public class VisualChessBoard extends JLayeredPane {
         statusPanel.setBackground(Color.LIGHT_GRAY);
         statusPanel.setBorder(new BevelBorder(BevelBorder.LOWERED));
         chessFrame.add(statusPanel, BorderLayout.SOUTH);
-        statusPanel.setPreferredSize(new Dimension(chessFrame.getWidth(), 100));
+        statusPanel.setPreferredSize(new Dimension(chessFrame.getWidth(), (PANEL_SIZE/8)));
         statusPanel.add(statusLabel);
         statusLabel.setFont(new Font("Serif", Font.PLAIN, 64));
         
