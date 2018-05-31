@@ -1,6 +1,6 @@
-import java.awt.Color;
-import java.awt.event.MouseEvent;
+/***** WRITTEN BY SHREY AGARWAL ******/
 
+import java.awt.Color;
 
 
 public class Board {
@@ -9,8 +9,7 @@ public class Board {
 	private int columns;
 	private Color black = new Color(0,0,0);
 	private Color white = new Color(255,255,255);
-	private int Blacklost;
-	private int Whitelost;
+
 	public Board(int row, int col){
 		rows = row;
 		columns = col;
@@ -19,63 +18,6 @@ public class Board {
 	
 	public Chesspiece[][] getBoard(){
 		return chessboard;
-	}
-
-	public void create(){
-		for(int a =0; a<rows;a++){
-			for(int k =0; k<columns;k++){
-				if(a==columns-2||a==2 ){
-					if(a==columns-2) {
-						chessboard[a][k]= new Pawn(k,a,black);
-					}
-					else if (a==2) {
-						chessboard[a][k]= new Pawn(k,a,white);
-					}
-				}
-				else if(a==columns-1||a==0){
-					if(k==0||k==rows-1){
-						if(a==columns-1) {
-							chessboard[a][k]=new Castle(k,a,black);
-						}
-						else if (a==0) {
-							chessboard[a][k]=new Castle(k,a,white); 
-						}
-					}
-					else if(k==1||k==rows-2){
-						if(a==columns-1) {
-							chessboard[a][k]=new Knight(k,a,black);
-						}
-						else if(a==0) {
-							chessboard[a][k]=new Knight(k,a,white); 
-						}
-					}
-				}
-				else if(k==2||k==rows-3){
-					if(a==columns-1) {
-						chessboard[a][k]=new Bishop(k,a,black);
-					}
-					else if(a==0) {
-						chessboard[a][k]=new Bishop(k,a,white); 
-					}
-				}
-				else if(k==3){
-					if(a==columns-1) {
-						chessboard[a][k]=new Queen(k,a,black);
-					}
-					else if(a==0){
-						chessboard[a][k]=new Queen(k,a,white);
-					}
-				}
-				else if(a==4){
-					if(a==columns-1) {
-						chessboard[a][k]=new King(k,a,black);
-					}
-					else if(a==0) {
-						chessboard[a][k]=new King(k,a,white);
-					}
-				}
-			}
-		}
 	}
 	
 	public void initialize () {
@@ -117,119 +59,13 @@ public class Board {
 		}
 	}
 	
-	public void redraw(MouseEvent e, MouseEvent e2) {
-		for(int a = 0; a<rows;a++) {
-			for(int k=0;k<rows;k++){
-				Chesspiece b = chessboard[a][k];
-				if(b.beenClickedon(e)) {
-					if(e2.getY()>b.getypos()&&e2.getX()==b.getxpos()) {
-						b.move(e.getY()-b.getypos(), b.d("UP"), b.d("UP"));
-						if(chessboard[b.getypos()][b.getxpos()]!=null) {
-							if(chessboard[b.getypos()][b.getxpos()].getColor()==black) {
-								Blacklost=Blacklost+1;
-							}
-							else {
-								Whitelost=Whitelost+1;
-							}
-						}
-						chessboard[b.getypos()][b.getxpos()]=b;
-					}
-					else if(e2.getY()<b.getypos()&&e2.getX()==b.getypos()) {
-						b.move(b.getypos()-e2.getY(), b.d("DOWN"), b.d("DOWN"));
-						if(chessboard[b.getypos()][b.getxpos()]!=null) {
-							if(chessboard[b.getypos()][b.getxpos()].getColor()==black) {
-								Blacklost=Blacklost+1;
-							}
-							else {
-								Whitelost=Whitelost+1;
-							}
-						}
-						chessboard[b.getypos()][b.getxpos()]=b;
-					}
-					else if(e2.getY()==b.getypos()&&e2.getX()>b.getxpos()) {
-						b.move(e2.getX()-b.getxpos(), b.d("RIGHT"), b.d("RIGHT"));
-						if(chessboard[b.getypos()][b.getxpos()]!=null) {
-							if(chessboard[b.getypos()][b.getxpos()].getColor()==black) {
-								Blacklost=Blacklost+1;
-							}
-							else {
-								Whitelost=Whitelost+1;
-							}
-						}
-						chessboard[b.getypos()][b.getxpos()]=b;
-					}
-					else if(e2.getY()==b.getypos()&&e2.getX()<b.getxpos()) {
-						b.move(b.getxpos()-e2.getX(), b.d("LEFT"), b.d("LEFT"));
-						if(chessboard[b.getypos()][b.getxpos()]!=null) {
-							if(chessboard[b.getypos()][b.getxpos()].getColor()==black) {
-								Blacklost=Blacklost+1;
-							}
-							else {
-								Whitelost=Whitelost+1;
-							}
-						}
-						chessboard[b.getypos()][b.getxpos()]=b;
-					}
-					else if(e2.getY()>b.getypos()&&e2.getX()<b.getxpos()) {
-						b.move(e.getY()-b.getypos(), b.d("LEFT"), b.d("UP"));
-						if(chessboard[b.getypos()][b.getxpos()]!=null) {
-							if(chessboard[b.getypos()][b.getxpos()].getColor()==black) {
-								Blacklost=Blacklost+1;
-							}
-							else {
-								Whitelost=Whitelost+1;
-							}
-						}
-						chessboard[b.getypos()][b.getxpos()]=b;
-					}
-					else if(e2.getY()>b.getypos()&&e2.getX()>b.getxpos()) {
-						b.move(e.getY()-b.getypos(), b.d("RIGHT"), b.d("UP"));
-						if(chessboard[b.getypos()][b.getxpos()]!=null) {
-							if(chessboard[b.getypos()][b.getxpos()].getColor()==black) {
-								Blacklost=Blacklost+1;
-							}
-							else {
-								Whitelost=Whitelost+1;
-							}
-						}
-						chessboard[b.getypos()][b.getxpos()]=b;
-					}
-					else if(e2.getY()<b.getypos()&&e2.getX()>b.getxpos()) {
-						b.move(b.getypos()-e2.getY(), b.d("RIGHT"), b.d("DOWN"));
-						if(chessboard[b.getypos()][b.getxpos()]!=null) {
-							if(chessboard[b.getypos()][b.getxpos()].getColor()==black) {
-								Blacklost=Blacklost+1;
-							}
-							else {
-								Whitelost=Whitelost+1;
-							}
-						}
-						chessboard[b.getypos()][b.getxpos()]=b;
-					}
-					else if(e2.getY()<b.getypos()&&e2.getX()<b.getxpos()) {
-						b.move(b.getypos()-e2.getY(), b.d("LEFT"), b.d("DOWN"));
-						if(chessboard[b.getypos()][b.getxpos()]!=null) {
-							if(chessboard[b.getypos()][b.getxpos()].getColor()==black) {
-								Blacklost=Blacklost+1;
-							}
-							else {
-								Whitelost=Whitelost+1;
-							}
-						}
-						chessboard[b.getypos()][b.getxpos()]=b;
-					}
-
-				}
-			}
-		}
-	}
-	
+		
 	public int isLegalMove (int origX, int origY, int newX, int newY) {
 		// check to see if the piece at the original position
 		// can legally move to the new position 
 		
 		// if legal, change the location of the piece on the chessboard
-		System.out.println("ON THE BOARD: OX="+origX+", OY="+origY+", NX="+newX+", NY="+newY);
+		// System.out.println("ON THE BOARD: OX="+origX+", OY="+origY+", NX="+newX+", NY="+newY);
 		
 		// check for legal moves and other information
 		// Return val: -4	piece was moved outside the board
@@ -405,7 +241,6 @@ public class Board {
 			}
 		}	
 		
-
 		
 		// if black move causes black king under check, it is an illegal move; need to restore to original and return -2, or
 		// if white move causes white king under check, it is an illegal move; need to restore to original and return -2
@@ -425,7 +260,6 @@ public class Board {
 		// if it was white move, and black king under check, it is all valid, return 1
 		if ((movingPieceColor == Color.BLACK && whiteKingInCheck) || (movingPieceColor == Color.WHITE && blackKingInCheck))
 			return 1;
-		
 		
 		// return what you got
 		return moveRetVal;
@@ -608,16 +442,7 @@ public class Board {
 		return -1;	// illegal move
 	}
 	
-	
-	
-	public int getWhiteLost() {
-		return Whitelost;
-	}
-	
-	public int getBlackLost() {
-		return Blacklost;
-	}
-	
+
 	public int getRows(){
 		return rows;
 	}
@@ -625,8 +450,5 @@ public class Board {
 	public int getColumns(){
 		return columns;
 	}
-	
-	
-
 }
 

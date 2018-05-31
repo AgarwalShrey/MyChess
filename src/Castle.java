@@ -1,3 +1,5 @@
+/***** WRITTEN BY ABHINAV PRASANNA ******/
+
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 
@@ -13,37 +15,6 @@ public class Castle extends Chesspiece {
 	   ypos=y;
 	   color = g; 
 	}
-
-
-	@Override
-	public boolean beenClickedon(MouseEvent e) {
-		if(e.getX()==getxpos()&&e.getY()==getypos()){
-			return true;
-			
-		}
-		return false;
-
-	}
-
-
-	@Override
-	public void move(int numtimes,Direction d,Direction d2) {
-		if(d.equals(Direction.UP)&&d2.equals(Direction.UP)){
-			ypos = ypos+numtimes;
-
-		}
-		if(d.equals(Direction.DOWN)&&d2.equals(Direction.DOWN)){
-			ypos = ypos-numtimes;
-		}
-		if(d.equals(Direction.LEFT)&&d2.equals(Direction.LEFT)){
-			xpos = xpos -numtimes;
-		}
-		if(d.equals(Direction.RIGHT)&&d2.equals(Direction.DOWN)){
-			xpos=xpos+numtimes;
-		}
-
-	}
-
 
 	@Override
 	public int getxpos() {
@@ -68,9 +39,4 @@ public class Castle extends Chesspiece {
 		xpos = x;
 		ypos = y;
 	}
-
-	
-
-
-
 }

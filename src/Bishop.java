@@ -1,3 +1,5 @@
+/***** WRITTEN BY ABHINAV PRASANNA ******/
+
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
@@ -15,41 +17,6 @@ public class Bishop extends Chesspiece {
 	   ypos=y;
 	   color = g; 
 	}
-
-
-	@Override
-	public boolean beenClickedon(MouseEvent e) {
-		if(e.getX()==getxpos()&&e.getY()==getypos()){
-			return true;
-			
-		}
-		return false;
-
-	}
-
-	@Override
-	public void move(int numtimes,Direction d,Direction d2) {
-		if(d.equals(Direction.LEFT)&&d2.equals(Direction.UP)){
-              xpos = xpos - numtimes;
-              ypos = ypos + numtimes;
-		}
-		if(d.equals(Direction.RIGHT)||d2.equals(Direction.UP)){
-			xpos = xpos+numtimes;
-			ypos = ypos+numtimes;
-
-		}
-		if(d.equals(Direction.LEFT)||d2.equals(Direction.DOWN)){
-			xpos = xpos-numtimes;
-			ypos=ypos-numtimes;
-
-		}
-		if(d.equals(Direction.RIGHT)||d2.equals(Direction.DOWN)){
-           xpos=xpos+numtimes;
-           ypos=ypos-numtimes;
-		}
-
-	}
-
 
 	@Override
 	public int getxpos() {

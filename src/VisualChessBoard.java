@@ -1,3 +1,5 @@
+/***** WRITTEN BY SHREY AGARWAL ******/
+
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
@@ -63,7 +65,7 @@ public class VisualChessBoard extends JLayeredPane {
 			origGridX = (int)((p.getX ())/(PANEL_SIZE/8));	
 			origGridY = (int)((p.getY ())/(PANEL_SIZE/8));	
 
-			System.out.println("Pressed (" + origGridX + ", " + origGridY + ")");
+			//System.out.println("Pressed (" + origGridX + ", " + origGridY + ")");
 		
 			
 			// Dragging the pieces
@@ -129,7 +131,7 @@ public class VisualChessBoard extends JLayeredPane {
 			
 			JPanel droppedPanel = (JPanel) chessPanel.getComponentAt(e.getPoint());
 
-			System.out.println("Released (" + gridX + ", " + gridY + ")");
+			// System.out.println("Released (" + gridX + ", " + gridY + ")");
 		
 			//remove the label from JLayeredPane if one exists
 			if (draggedLabel == null)
