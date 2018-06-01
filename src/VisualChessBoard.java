@@ -255,51 +255,47 @@ public class VisualChessBoard extends JLayeredPane {
 	public void draw (Board cBoard) {
 		Chesspiece [][] logicalBoard = cBoard.getBoard();
 		JLabel label = null;
-		try {
-			for (int y = 0; y < 8; y++) {
-				for (int x = 0; x < 8; x++) {
-					if (logicalBoard[x][y] != null) {
-						label = new JLabel();
-						if (logicalBoard[x][y].getClass().getName ().equals("Pawn")) {
-							if (logicalBoard[x][y].getColor () == Color.BLACK)
-								label = new JLabel(new ImageIcon(ImageIO.read(new File("resources/PA_B.png"))));
-							else
-								label = new JLabel(new ImageIcon(ImageIO.read(new File("resources/PA_W.png"))));
-						} else if (logicalBoard[x][y].getClass().getName ().equals("King")) {
-							if (logicalBoard[x][y].getColor () == Color.BLACK)
-								label = new JLabel(new ImageIcon(ImageIO.read(new File("resources/KI_B.png"))));
-							else
-								label = new JLabel(new ImageIcon(ImageIO.read(new File("resources/KI_W.png"))));
-						} else if (logicalBoard[x][y].getClass().getName ().equals("Queen")) {
-							if (logicalBoard[x][y].getColor () == Color.BLACK)
-								label = new JLabel(new ImageIcon(ImageIO.read(new File("resources/QU_B.png"))));
-							else
-								label = new JLabel(new ImageIcon(ImageIO.read(new File("resources/QU_W.png"))));
-						} else if (logicalBoard[x][y].getClass().getName ().equals("Knight")) {
-							if (logicalBoard[x][y].getColor () == Color.BLACK)
-								label = new JLabel(new ImageIcon(ImageIO.read(new File("resources/KN_B.png"))));
-							else
-								label = new JLabel(new ImageIcon(ImageIO.read(new File("resources/KN_W.png"))));
-						} else if (logicalBoard[x][y].getClass().getName ().equals("Bishop")) {
-							if (logicalBoard[x][y].getColor () == Color.BLACK)
-								label = new JLabel(new ImageIcon(ImageIO.read(new File("resources/BI_B.png"))));
-							else
-								label = new JLabel(new ImageIcon(ImageIO.read(new File("resources/BI_W.png"))));
-						} else if (logicalBoard[x][y].getClass().getName ().equals("Castle")) {
-							if (logicalBoard[x][y].getColor () == Color.BLACK)
-								label = new JLabel(new ImageIcon(ImageIO.read(new File("resources/RO_B.png"))));
-							else
-								label = new JLabel(new ImageIcon(ImageIO.read(new File("resources/RO_W.png"))));
-						}
-						
-						squares[x][y].add(label);
+			
+		for (int y = 0; y < 8; y++) {
+			for (int x = 0; x < 8; x++) {
+				if (logicalBoard[x][y] != null) {
+					label = new JLabel();
+					if (logicalBoard[x][y].getClass().getName ().equals("Pawn")) {
+						if (logicalBoard[x][y].getColor () == Color.BLACK)
+							label = new JLabel(new ImageIcon(getClass().getResource("/PA_B.png")));
+						else
+							label = new JLabel(new ImageIcon(getClass().getResource("/PA_W.png")));
+					} else if (logicalBoard[x][y].getClass().getName ().equals("King")) {
+						if (logicalBoard[x][y].getColor () == Color.BLACK)
+							label = new JLabel(new ImageIcon(getClass().getResource("/KI_B.png")));
+						else
+							label = new JLabel(new ImageIcon(getClass().getResource("/KI_W.png")));
+					} else if (logicalBoard[x][y].getClass().getName ().equals("Queen")) {
+						if (logicalBoard[x][y].getColor () == Color.BLACK)
+							label = new JLabel(new ImageIcon(getClass().getResource("/QU_B.png")));
+						else
+							label = new JLabel(new ImageIcon(getClass().getResource("/QU_W.png")));
+					} else if (logicalBoard[x][y].getClass().getName ().equals("Knight")) {
+						if (logicalBoard[x][y].getColor () == Color.BLACK)
+							label = new JLabel(new ImageIcon(getClass().getResource("/KN_B.png")));
+						else
+							label = new JLabel(new ImageIcon(getClass().getResource("/KN_W.png")));
+					} else if (logicalBoard[x][y].getClass().getName ().equals("Bishop")) {
+						if (logicalBoard[x][y].getColor () == Color.BLACK)
+							label = new JLabel(new ImageIcon(getClass().getResource("/BI_B.png")));
+						else
+							label = new JLabel(new ImageIcon(getClass().getResource("/BI_W.png")));
+					} else if (logicalBoard[x][y].getClass().getName ().equals("Castle")) {
+						if (logicalBoard[x][y].getColor () == Color.BLACK)
+							label = new JLabel(new ImageIcon(getClass().getResource("/RO_B.png")));
+						else
+							label = new JLabel(new ImageIcon(getClass().getResource("/RO_W.png")));
 					}
+						
+					squares[x][y].add(label);
 				}
-			}      
-		}
-		catch (IOException e) {
-			System.out.println(e);
-		}
+			}
+		}      
 	}
 	
 	
